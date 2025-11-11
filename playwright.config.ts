@@ -5,6 +5,9 @@ import { defineBddProject } from 'playwright-bdd';
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
+  /* Global setup and teardown */
+  globalSetup: './tests/global-setup.ts',
+  globalTeardown: './tests/global-teardown.ts',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -26,10 +29,10 @@ export default defineConfig({
   use: {
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    
+
     /* Take screenshot on failure */
     screenshot: 'only-on-failure',
-    
+
     /* Record video on failure */
     video: 'retain-on-failure',
   },
@@ -40,7 +43,7 @@ export default defineConfig({
     {
       ...defineBddProject({
         name: 'ui-tests',
-  features: 'features/*.feature', // Unified feature directory (root-level only)
+        features: 'features/*.feature', // Unified feature directory (root-level only)
         steps: [
           'tests/steps/fixtures.ts',      // shared fixtures & test instance
           'tests/steps/ui/**/*.ts',       // UI steps
@@ -48,7 +51,7 @@ export default defineConfig({
         ],
         outputDir: '.features-gen/ui',
       }),
-      use: { 
+      use: {
         ...devices['Desktop Chrome'],
         baseURL: process.env.BASE_URL || 'https://playwright.dev',
       },
@@ -60,7 +63,7 @@ export default defineConfig({
     {
       ...defineBddProject({
         name: 'api-tests',
-  features: 'features/*.feature', // Unified feature directory (root-level only)
+        features: 'features/*.feature', // Unified feature directory (root-level only)
         steps: [
           'tests/steps/fixtures.ts',     // shared fixtures & test instance
           'tests/steps/api/**/*.ts',     // API step definitions

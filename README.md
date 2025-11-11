@@ -24,6 +24,9 @@ npm run allure:generate && npm run allure:open
 `@ui` scenarios: browser interactions.
 Dual `@api @ui`: classification only (runs in UI project because API project uses grepInvert to skip anything tagged @ui).
 
+### Global Setup & Teardown
+`global-setup.ts` and `global-teardown.ts` are run before and after all tests, respectively.  
+
 ### Layout
 ```
 features/
@@ -38,16 +41,16 @@ playwright.config.ts
 Generated: `.features-gen/`, `allure-results/`, `allure-report/`, `playwright-report/`, `test-results/`.
 
 ### Key Scripts
-| Action | Script |
-|--------|--------|
-| Generate BDD code | `npm run bdd:gen` |
-| Run all (gen+test) | `npm run bdd` |
-| API tests | `npm run test:api` |
-| UI tests | `npm run test:ui` |
-| Debug | `npm run bdd:debug` |
-| Headed | `npm run bdd:headed` |
-| HTML report | `npm run report` |
-| Allure (local) | `npm run allure:generate && npm run allure:open` |
+| Action             | Script                                           |
+| ------------------ | ------------------------------------------------ |
+| Generate BDD code  | `npm run bdd:gen`                                |
+| Run all (gen+test) | `npm run bdd`                                    |
+| API tests          | `npm run test:api`                               |
+| UI tests           | `npm run test:ui`                                |
+| Debug              | `npm run bdd:debug`                              |
+| Headed             | `npm run bdd:headed`                             |
+| HTML report        | `npm run report`                                 |
+| Allure (local)     | `npm run allure:generate && npm run allure:open` |
 
 ### Reporting
 Allure static site: https://aimer1124.github.io/playwright-demo/ (history via cache key `allure-history-<branch>`).
